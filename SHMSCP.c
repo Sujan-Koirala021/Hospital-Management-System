@@ -5,7 +5,10 @@ struct ad
 {
     char name[30];
     char disease[30];
-    int cabin,phone,age;
+    int cabin,age;
+    long long int phone;
+    char has_covid;
+    char covid_status[20];
 } x[100];
 int n,i,j=0,a=0,sum=0,g,flag,num;
 void read_file();
@@ -118,7 +121,13 @@ void add()
         scanf("%d",&x[i].cabin);
         fflush(stdin);
         printf("Enter phone number = ");
-        scanf("%d",&x[i].phone);
+        scanf("%lld",&x[i].phone);
+        printf("Enter COVID status = (p for +ve and n for -ve)");
+        scanf(" %c", &x[i].has_covid);
+        if (x[i].has_covid == 'p')
+            strcpy(x[i].covid_status, "Positive");
+        else if(x[i].has_covid == 'n')
+            strcpy(x[i].covid_status, "Negative");
         fflush(stdin);
         printf("\n");
         j++;
@@ -137,8 +146,11 @@ void view()
         puts(x[i].name);
         printf("Disease = ");
         puts(x[i].disease);
-        printf("Cabin no = %d\nPhone number = 0%d\nAge=%d",x[i].cabin,x[i].phone,x[i].age);
+        printf("Cabin no = %d\nPhone number = %lld\nAge=%d\n",x[i].cabin,x[i].phone,x[i].age);
+        printf("Covid Status = ");
+        puts(x[i].covid_status);
         printf("\n\n");
+        
     }
 }
 void edit()
@@ -147,10 +159,10 @@ void edit()
     fflush(stdin);
     printf("What do you want to edit ?\n");
     printf("Enter your option\n");
-    printf("1.Name\n2.Disease\n3.Age\n4.Cabin\n5.Phone no.\n");
+    printf("1.Name\n2.Disease\n3.Age\n4.Cabin\n5.Phone no.\n6. Covid Status\n");
     printf("Option=");
     scanf("%d",&q);//option
-    if(q<=5)
+    if(q<=6)
     {
         printf("Enter the serial no of that patient= (0 - %d)=",num-1);
         scanf("%d",&p);//serial number
@@ -187,7 +199,17 @@ void edit()
             {
                 fflush(stdin);
                 printf("Enter the new Phone no =");
-                scanf("%d",&x[p].phone);
+                scanf("%lld",&x[p].phone);
+            }
+            else if(q==6)
+            {
+                fflush(stdin);
+                printf("Enter the updated COVID status=");
+                scanf(" %c", &x[p].has_covid);
+                if (x[p].has_covid == 'p')
+                    strcpy(x[p].covid_status , "Positive");
+                else if(x[p].has_covid == 'n')
+                    strcpy(x[p].covid_status ,"Negative");
             }
         }
         else
@@ -219,7 +241,9 @@ void search()
             puts(x[s].name);
             printf("Disease = ");
             puts(x[s].disease);
-            printf("Cabin no = %d\nPhone number = 0%d\nAge = %d",x[s].cabin,x[s].phone,x[s].age);
+            printf("Cabin no = %d\nPhone number = 0%d\nAge = %d\n",x[s].cabin,x[s].phone,x[s].age);
+            printf("Covid Status = ");
+            puts(x[s].covid_status);
             printf("\n\n");
         }
         else
@@ -242,7 +266,9 @@ void search()
                 puts(x[g].name);
                 printf("Disease = ");
                 puts(x[g].disease);
-                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d",x[g].cabin,x[g].phone,x[g].age);
+                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d\n",x[g].cabin,x[g].phone,x[g].age);
+                printf("Covid Status = ");
+                puts(x[g].covid_status);
                 printf("\n\n");
                 f=0;
 
@@ -271,7 +297,9 @@ void search()
                 puts(x[g].name);
                 printf("Disease = ");
                 puts(x[g].disease);
-                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d",x[g].cabin,x[g].phone,x[g].age);
+                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d\n",x[g].cabin,x[g].phone,x[g].age);
+                printf("Covid Status = ");
+                puts(x[g].covid_status);
                 printf("\n\n");
                 f=0;
             }
@@ -298,7 +326,9 @@ void search()
                 puts(x[g].name);
                 printf("Disease = ");
                 puts(x[g].disease);
-                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d",x[g].cabin,x[g].phone,x[g].age);
+                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d\n",x[g].cabin,x[g].phone,x[g].age);
+                printf("Covid Status = ");
+                puts(x[g].covid_status);
                 printf("\n\n");
                 f=0;
             }
@@ -312,7 +342,7 @@ void search()
     {
         int f=1;
         printf("Enter Phone number = ");
-        scanf("%d",&f);
+        scanf("%lld",&f);
         for(g=0; g<num; g++)
         {
             if(f==x[g].phone)
@@ -323,7 +353,9 @@ void search()
                 puts(x[g].name);
                 printf("Disease = ");
                 puts(x[g].disease);
-                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d",x[g].cabin,x[g].phone,x[g].age);
+                printf("Cabin no = %d\nPhone number = 0%lld\nAge = %d\n",x[g].cabin,x[g].phone,x[g].age);
+                printf("Covid Status = ");
+                puts(x[g].covid_status);
                 printf("\n\n");
                 f=0;
             }
@@ -347,7 +379,9 @@ void search()
                 puts(x[g].name);
                 printf("Disease = ");
                 puts(x[g].disease);
-                printf("Cabin no = %d\nPhone number = 0%d\nAge = %d",x[g].cabin,x[g].phone,x[g].age);
+                printf("Cabin no = %d\nPhone number = 0%lld\nAge = %d\n",x[g].cabin,x[g].phone,x[g].age);
+                printf("Covid Status = ");
+                puts(x[g].covid_status);
                 printf("\n\n");
                 f=0;
             }
@@ -372,7 +406,7 @@ void del()
     if(f<num)
     {
         printf("What do you want ?\n");
-        printf("1.Remove the whole record\n2.Remove Name\n3.Remove Disease\n4.Remove age\n5.Remove Cabin\n6.Remove phone number\nOption = ");
+        printf("1.Remove the whole record\n2.Remove Name\n3.Remove Disease\n4.Remove age\n5.Remove Cabin\n6.Remove phone number\n7.Remove COVID status\nOption = ");
         scanf("%d",&h);
         if(h==1)
         {
@@ -383,6 +417,9 @@ void del()
                 x[f].age=x[f+1].age;
                 x[f].cabin=x[f+1].cabin;
                 x[f].phone=x[f+1].phone;
+                strcpy(x[f].has_covid,x[f+1].has_covid);
+                strcpy(x[f].covid_status,x[f+1].covid_status);
+                
                 f++;
             }
             num--;
@@ -408,6 +445,10 @@ void del()
         {
             x[f].phone=0;
         }
+        else if(h==7)
+        {
+            strcpy(x[f].has_covid,"Cleared");
+        }
 
     }
     else
@@ -419,12 +460,9 @@ void read_file()
     FILE *fp = fopen("patient.txt","r");
     if(fp == NULL)
     {
-        //create empty file, so that we can open it
-        //in the next execution of this program
-        fp = fopen("patient.txt","w");
-        fclose(fp);
-        printf("File does not exist, I JUST CREATED IT, exiting...\n\n\n");
-        return ;
+        printf("File does not exist.\n\n\n");
+        
+        exit(1);
     }
 
     num = fread(x, sizeof(struct ad),100, fp);
@@ -432,7 +470,7 @@ void read_file()
 }
 void write_file()
 {
-    FILE *fp = fopen("patient.txt","w");
+    FILE *fp = fopen("patient.txt","a");
     if(fp == NULL)
     {
         printf("Error");
