@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
 struct ad
 {
@@ -7,7 +8,8 @@ struct ad
     int cabin,phone,age;
 } x[100];
 int n,i,j=0,a=0,sum=0,g,flag,num;
-void read();
+void read_file();
+void write_file();
 void add();
 void view();
 void search();
@@ -16,7 +18,7 @@ void del();
 void show();
 int main()
 {
-    read();
+    read_file();
     int c,i,q;
     printf("Simple Hospital Management System\n");
     int m,n;
@@ -79,7 +81,7 @@ int main()
         }
         else if(c==6)
         {
-            write();
+            write_file();
             return 0;
         }
         else
@@ -411,7 +413,7 @@ void del()
         printf("\n\nInvalid Serial number\n");
 
 }
-void read()
+void read_file()
 {
     FILE *fp = fopen("patient.txt","r");
     if(fp == NULL)
@@ -421,13 +423,13 @@ void read()
         fp = fopen("patient.txt","w");
         fclose(fp);
         printf("File does not exist, I JUST CREATED IT, exiting...\n\n\n");
-        return 0;
+        return ;
     }
 
     num = fread(x, sizeof(struct ad),100, fp);
     fclose(fp);
 }
-void write()
+void write_file()
 {
     FILE *fp = fopen("patient.txt","w");
     if(fp == NULL)
