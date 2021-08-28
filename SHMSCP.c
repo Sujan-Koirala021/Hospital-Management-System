@@ -458,7 +458,7 @@ void del()
 void read_file()
 {
     FILE *fp = fopen("patient.txt","r");
-    if(fp == NULL)
+    if(fp == NULL)//Error message
     {
         printf("File does not exist.\n\n\n");
         
