@@ -20,7 +20,8 @@ int main()
 {
     read_file();
     int c,i,q;
-    printf("Simple Hospital Management System\n");
+    printf("Hospital Management System\n");
+
     int m,n;
 //making out the pattern
     
