@@ -9,6 +9,7 @@ struct ad
     long long int phone;
     char has_covid;
     char covid_status[20];
+    
 } x[100];
 int n,i,j=0,a=0,sum=0,g,flag,num;
 void read_file();
@@ -19,6 +20,8 @@ void search();
 void edit();
 void del();
 void show();
+float outp( int, float, float, float );
+float inp( float, float );
 int main()
 {
     read_file();
@@ -103,6 +106,18 @@ void add()
     printf("How many entry do you want to add=\n");
     scanf("%d",&n);
     sum=n+num;
+    int choice;
+ 
+    /*Main menu*/
+    printf( "----------Pulchowk Hospital---------\n" );
+    printf( "Please select whether you where\n" );
+    printf( "an in-patient or an out-patient\n" );
+    printf( "-------------------------------\n" );
+    printf( "1 : In-patient\n" );
+    printf( "2 : Out-patient\n" );
+    printf( "---> " );
+    scanf( "%d", &choice );
+
 
     for(i=num,j=0; i<sum; i++)
     {
@@ -133,6 +148,22 @@ void add()
         j++;
         a++;
         num++;
+
+        if(choice == 1)
+        {
+        int dHospital;
+        float dRate, hService, hMed, medBill = 0.0;
+        medBill = outp(dHospital, dRate, hService, hMed);
+        printf( "\nTotal amount owed %.2f", medBill );
+        return 0;
+        }
+        if(choice == 2)
+        {
+        int dHospital;
+        float dRate, hService, hMed, medBill = 0.0;
+        medBill = inp( hService, hMed );
+        printf( "\nTotal amount owed %.2f", medBill );
+        }
     }
 }
 
@@ -150,6 +181,7 @@ void view()
         printf("Covid Status = ");
         puts(x[i].covid_status);
         printf("\n\n");
+
         
     }
 }
@@ -479,4 +511,58 @@ void write_file()
     fwrite(x, sizeof(struct ad),num, fp);
 
     fclose(fp);
+}
+
+float outp( int a, float b, float c, float d )
+{ 
+ /*Declaring the Variables*/ 
+ float x = 0.0;
+ 
+ /*What will be displayed to the user and a request of*/
+ /*information from user.*/
+ printf( "\n----In-patient----\n" );
+ 
+ printf( "Number of days you spent in the hospital: " );
+ scanf( "%d", &a ); /*User input days in hospital*/
+ printf("------------------------------------------\n");
+ 
+ printf( "The daily rate: " );
+ scanf( "%f", &b ); /*User input daily rate*/
+ printf("------------------------------------------\n");
+ 
+ printf( "Provided Services cost: " );
+ scanf( "%f", &c ); /*User input servies given*/
+ printf("------------------------------------------\n");
+ 
+ printf( "Supplied medication cost: " );
+ scanf( "%f", &d ); /*User input medication given*/
+ printf("------------------------------------------\n");
+ 
+ /*Adding up the total amount owed*/
+ x = (a * b) + c + d;
+ 
+ /*return value to be displayed to patient*/
+ return x;
+}
+
+float inp( float a, float b )
+{
+ /*Declaring the Variables*/ 
+ float x = 0.0;
+ 
+ /*What will be displayed to the user and a request of*/
+ /*information from user.*/
+ printf( "Provided Services cost: " );
+ scanf( "%f", &a ); /*User input servies given*/
+ printf("------------------------------------------\n");
+ 
+ printf( "Supplied medication cost: " );
+ scanf( "%f", &b ); /*User input medication given*/
+ printf("------------------------------------------\n");
+ 
+ /*Adding up the total amount owed*/
+ x = a + b;
+ 
+ /*return value to be displayed to patient*/
+ return x;
 }
