@@ -152,7 +152,7 @@ void add()
         if(choice == 1)
         {
         int dHospital;
-        float dRate, hService, hMed, medBill = 0.0;
+        float dRate, hService, hMed, medBill* = 0.0;
         medBill = outp(dHospital, dRate, hService, hMed);
         printf( "\nTotal amount owed %.2f", medBill );
         return 0;
