@@ -14,7 +14,7 @@ struct ad
 int n,i,j=0,a=0,sum=0,g,flag,num;
 void read_file();
 void write_file();
-void add();
+float add();
 void view();
 void search();
 void edit();
@@ -99,7 +99,7 @@ int main()
         printf("\n\n");
     }
 }
-void add()
+float add()
 {
     printf("\n\n");
     printf("Already data inputed on the database =%d\n\n",num);//how many inputs
@@ -152,7 +152,7 @@ void add()
         if(choice == 1)
         {
         int dHospital;
-        float dRate, hService, hMed, medBill* = 0.0;
+        float dRate, hService, hMed, medBill = 0.0;
         medBill = outp(dHospital, dRate, hService, hMed);
         printf( "\nTotal amount owed %.2f", medBill );
         return 0;
@@ -181,8 +181,6 @@ void view()
         printf("Covid Status = ");
         puts(x[i].covid_status);
         printf("\n\n");
-
-        
     }
 }
 void edit()
